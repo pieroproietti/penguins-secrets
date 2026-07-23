@@ -1,0 +1,26 @@
+#!/bin/bash
+# s4create - Crea, formatta e monta un nuovo volume cifrato FAT32
+
+# Ricava la directory in cui si trova questo script e carica s4config
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+source "$SCRIPT_DIR/s4config"
+
+echo "-> Inizializzazione di un nuovo contenitore cifrato..."
+mkdir -p "$CRYPTDIR"
+fallocate -l 1G "$CRYPTFILE"
+
+# Inizializza LUKS
+sudo cryptsetup luksFormat "$CRYPTFILE"
+
+# Apre il contenitore virtuale
+sudo cryptsetup luksOpen "$CRYPTFILE" "$CRYPTMAPPED"
+
+# Crea il file system FAT32
+echo "-> Formattazione del volume in FAT32..."
+sudo mkfs.vfat /dev/mapper/"$CRYPTMAPPED"
+
+# Crea il punto di mount e monta il disco assegnando i permessi all'utente
+mkdir -p "$CRYPTMNT"
+sudo mount -o uid=$(id -u),gid=$(id -g) /dev/mapper/"$CRYPTMAPPED" "$CRYPTMNT"
+
+echo "-> Volume creato e montato con successo in $CRYPTMNT!"

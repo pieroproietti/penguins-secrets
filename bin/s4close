@@ -1,0 +1,22 @@
+#!/bin/bash
+# s4close - Smonta il volume e chiude il contenitore LUKS
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+source "$SCRIPT_DIR/s4config"
+
+# Verifica se la cartella è effettivamente montata prima di tentare lo smontaggio
+if mountpoint -q "$CRYPTMNT"; then
+    echo "-> Smontaggio del filesystem..."
+    sudo umount "$CRYPTMNT"
+else
+    echo "-> Il volume non risulta montato in $CRYPTMNT."
+fi
+
+# Verifica se il mapper LUKS è aperto prima di tentare la chiusura
+if [ -e "/dev/mapper/$CRYPTMAPPED" ]; then
+    echo "-> Chiusura del contenitore LUKS..."
+    sudo cryptsetup luksClose "$CRYPTMAPPED"
+    echo "-> Volume sigillato in sicurezza."
+else
+    echo "-> Il contenitore LUKS risulta già chiuso."
+fi
