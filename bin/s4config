@@ -1,7 +1,0 @@
-#!/bin/bash
-# s4config - Variabili globali per i volumi cifrati
-
-CRYPTDIR=~/penguins-secrets
-CRYPTFILE="$CRYPTDIR/secrets.img"
-CRYPTMNT="$CRYPTDIR/mnt"
-CRYPTMAPPED="secrets_mapped"

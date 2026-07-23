@@ -19,28 +19,17 @@ Here, I want to type as little as possible: single `s4` CLI in Go with subcomman
 ## Usage / Uso (`s4`)
 
 ```bash
-# Build / Compilazione del binario
+# Build / Compilazione
 go build -o bin/s4 main.go
 
 # Usage / Utilizzo
 s4 create [size]   # Creates, formats LUKS+FAT32, and mounts (default size: 1G)
-s4 mount / open    # Unlocks LUKS and mounts FAT32 volume to mnt/
-s4 umount / lock   # Unmounts FAT32 AND completely seals LUKS container (use -f to force)
+s4 mount          # Unlocks LUKS and mounts FAT32 volume to mnt/
+s4 umount         # Unmounts FAT32 AND completely closes LUKS container
 s4 clone [dest]   # Safely backups secrets.img
 s4 status         # Displays current mount and LUKS container status
 s4 completion     # Generates Bash autocompletion script
 ```
-
-### Installazione tramite pacchetto `.deb` (Consigliata)
-Per una pigrizia davvero professionale, basta installare il pacchetto `.deb`:
-
-```bash
-sudo dpkg -i penguins-secrets_1.0.0_amd64.deb
-```
-Questo installerà in automatico:
-- L'eseguibile `s4` in `/usr/bin/s4` (subito disponibile nel `PATH` di sistema)
-- L'autocompletamento in `/usr/share/bash-completion/completions/s4` (funzionante subito in Bash)
-
 
 ### Bash Autocompletion & PATH Setup / Configurazione Bash
 Aggiungi queste due righe in fondo al tuo file `~/.bashrc`:

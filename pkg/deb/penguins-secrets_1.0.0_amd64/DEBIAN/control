@@ -1,0 +1,10 @@
+Package: penguins-secrets
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: artisan <artisan@local>
+Depends: cryptsetup, dosfstools, util-linux
+Description: Encrypted volume manager for password & secrets protection
+ Simple and secure LUKS+FAT32 volume manager CLI (s4) to keep secrets
+ safely unmounted against AI agents and unauthorized access.
