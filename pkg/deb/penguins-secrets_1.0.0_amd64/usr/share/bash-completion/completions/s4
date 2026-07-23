@@ -1,3 +1,10 @@
+# Script di autocompletamento Bash per s4 (penguins-secrets)
+# Per attivarlo subito nella sessione corrente:
+#   source /home/artisan/penguins-secrets/s4-completion.bash
+#
+# Per attivarlo in automatico a ogni avvio di terminale, aggiungi a ~/.bashrc:
+#   source /home/artisan/penguins-secrets/s4-completion.bash
+
 _s4_completion() {
     local cur prev opts
     COMPREPLY=()

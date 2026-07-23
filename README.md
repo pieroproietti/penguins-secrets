@@ -19,11 +19,11 @@ Here, I want to type as little as possible: single `s4` CLI in Go with subcomman
 ## Usage / Uso (`s4`)
 
 ```bash
-# Build / Compilazione del binario
-go build -o bin/s4 main.go
-
+# Build binario e pacchetto .deb
+./m
+```
 # Usage / Utilizzo
-s4 create [size]   # Creates, formats LUKS+FAT32, and mounts (default size: 1G)
+s4 create [size]   # Creates, formats LUKS+FAT, and mounts (default size: 64M, e.g. 10M, 64M, 100M)
 s4 mount / open    # Unlocks LUKS and mounts FAT32 volume to mnt/
 s4 umount / lock   # Unmounts FAT32 AND completely seals LUKS container (use -f to force)
 s4 clone [dest]   # Safely backups secrets.img

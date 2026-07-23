@@ -78,7 +78,7 @@ func main() {
 
 	switch subcommand {
 	case "create":
-		size := "1G"
+		size := "64M"
 		if len(os.Args) >= 3 {
 			size = os.Args[2]
 		}
@@ -129,7 +129,7 @@ func printUsage() {
 	fmt.Println("Uso: s4 <comando> [opzioni]")
 	fmt.Println()
 	fmt.Println("Comandi disponibili:")
-	fmt.Println("  create [dimensione]  Crea, formatta e monta un nuovo volume cifrato LUKS/FAT32 (default: 1G)")
+	fmt.Println("  create [dimensione]  Crea, formatta e monta un nuovo volume cifrato LUKS/FAT (default: 64M)")
 	fmt.Println("  mount | open         Sblocca il volume LUKS e lo monta in mnt/")
 	fmt.Println("  umount | lock | seal Smonta il volume FAT32 E chiude completamente il contenitore LUKS (-f per forzare)")
 	fmt.Println("  clone [destinazione] Esegue un backup sicuro del volume cifrato secrets.img")
